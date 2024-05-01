@@ -1,0 +1,11 @@
+{% extends 'drives/base.html' %}
+
+{% block header %}
+	<div class="jumbotron">
+		<h1 align="center">欢迎来到 Orgent 云盘！</h1>
+	</div>
+{% endblock header %}
+
+{% block content %}
+	<h2 align="center"><a href="{% url 'users:register' %}">立即注册账户</a> 以管理你的文件。</h2>
+{% endblock content %}

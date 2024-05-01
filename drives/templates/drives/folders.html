@@ -1,0 +1,40 @@
+{% extends "drives/base.html" %}
+
+{% block header %}
+	<h2>我的文件 &nbsp; <small>当前目录：/ &nbsp; <a href="{% url 'drives:new_folder' %}">新建文件夹</a></small></h2>
+{% endblock header %}
+
+{% block content %}
+	<style type="text/css">
+		td{
+			font-size: 12px;
+			padding: 3px;
+		}
+		.th{
+			background-color: #B6DF48;
+			font-weight: bold;
+			text-align: center;
+		}
+	</style>
+
+	<table width="98%" border="1" align="center" cellpadding="0" cellspacing="1">
+		<tr>
+			<td width="50%" height="27">文件夹名称</td>
+			<td width="13%">创建时间</td>
+			<td width="10%">路径</td>
+			<td width="5%">操作</td>
+		</tr>
+		{% for folder in folders %}
+			<tr>
+				<td width="50%">{{ folder.name }}</td>
+				<td width="13%">{{ folder.date_added|date:'Y/m/d H:i' }}</td>
+				<td width="10%">/{{ folder.name }}/</td>
+				<td width="5%"><a href="{% url 'drives:folder' folder.id %}">进入</a></td>
+			</tr>
+		{% empty %}
+			<tr>
+				<td>这里没有任何内容。 &nbsp; <a href="{% url 'drives:new_folder' %}">新建文件夹</a></td>
+			</tr>
+		{% endfor %}
+	</table>
+{% endblock content %}
